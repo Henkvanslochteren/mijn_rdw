@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'pages/home.dart';
+import 'pages/settings.dart';
 
 void main() => runApp(new MyApp());
 
@@ -21,6 +22,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: new MyHomePage(title: 'Mijn RDW'),
+      routes: <String, WidgetBuilder>{
+        // define the routes
+        SettingsScreen.routeName: (BuildContext context) => new SettingsScreen(),
+      },
     );
   }
 }
