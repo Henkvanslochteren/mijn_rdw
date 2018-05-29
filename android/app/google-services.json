@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "810375456393",
+    "firebase_url": "https://rdwhackathon.firebaseio.com",
+    "project_id": "rdwhackathon",
+    "storage_bucket": "rdwhackathon.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:810375456393:android:f2b87e7870013464",
+        "android_client_info": {
+          "package_name": "nl.rdw.mijnrdw"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "810375456393-60ba1on1a237bj92f0bb9hmmo2ibe224.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "nl.rdw.mijnrdw",
+            "certificate_hash": "c6f6d300bc01173b7cf50c6f27a543d5627ab4cd"
+          }
+        },
+        {
+          "client_id": "810375456393-f6mc2min6fb0g3mi9ii97nv5suov0r0s.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "810375456393-f6mc2min6fb0g3mi9ii97nv5suov0r0s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXJqZz_bE3TtF8LJXbra2ZFCxJtg11Dj8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "810375456393-f6mc2min6fb0g3mi9ii97nv5suov0r0s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

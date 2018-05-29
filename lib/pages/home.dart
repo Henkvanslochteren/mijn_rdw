@@ -1,4 +1,7 @@
+import 'dart:async';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mijn_rdw/pages/settings.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -20,6 +23,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  final auth = FirebaseAuth.instance;
+  final googleSignIn = new GoogleSignIn();
   Drawer getNavDrawer(BuildContext context) {
     var headerChild = new DrawerHeader(child: new Text("Header"));
     var aboutChild = new AboutListTile(
@@ -58,8 +64,34 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+
+  void logIn() {
+    Future<Null> _ensureLoggedIn() async {
+      GoogleSignInAccount user = googleSignIn.currentUser;
+      if (user == null)
+        user = await googleSignIn.signInSilently();
+      if (user == null) {
+        await googleSignIn.signIn();
+        setState(() {});
+      }
+      if (await auth.currentUser() == null) {
+        GoogleSignInAuthentication credentials =
+        await googleSignIn.currentUser.authentication;
+        await auth.signInWithGoogle(
+          idToken: credentials.idToken,
+          accessToken: credentials.accessToken,
+        );
+      }
+    }
+    setState(() {
+      _ensureLoggedIn();
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
+    logIn();
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -97,6 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             new Text("hi"
             ),
+            //new FloatingActionButton(onPressed: null)
           ],
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.

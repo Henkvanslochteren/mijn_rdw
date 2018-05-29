@@ -13,6 +13,8 @@ if (flutterRoot == null) {
 
 apply plugin: 'com.android.application'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+apply plugin: 'com.google.gms.google-services'
+
 
 android {
     compileSdkVersion 27
@@ -23,7 +25,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "rdw.nl.mijnrdw"
+        applicationId "nl.rdw.mijnrdw"
         minSdkVersion 16
         targetSdkVersion 27
         versionCode 1
@@ -49,3 +51,4 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 }
+

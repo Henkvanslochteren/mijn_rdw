@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         // counter didn't reset back to zero; the application is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: new MyHomePage(title: 'Mijn RDW'),
+      home: new MyHomePage(title: 'Mijn voertuigen'),
       routes: <String, WidgetBuilder>{
         // define the routes
         SettingsScreen.routeName: (BuildContext context) => new SettingsScreen(),
