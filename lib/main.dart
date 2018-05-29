@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'pages/home.dart';
 import 'pages/settings.dart';
+import 'pages/details.dart';
 
 void main() => runApp(new MyApp());
 
@@ -25,6 +26,8 @@ class MyApp extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         // define the routes
         SettingsScreen.routeName: (BuildContext context) => new SettingsScreen(),
+        DetailsScreen.routeName: (BuildContext context) => new DetailsScreen(),
+
       },
     );
   }

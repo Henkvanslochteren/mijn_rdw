@@ -3,6 +3,9 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mijn_rdw/pages/settings.dart';
+import 'package:mijn_rdw/pages/details.dart';
+import 'package:firebase_database/firebase_database.dart';
+
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -26,8 +29,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final auth = FirebaseAuth.instance;
   final googleSignIn = new GoogleSignIn();
+  final reference = FirebaseDatabase.instance.reference();
+
+
   Drawer getNavDrawer(BuildContext context) {
-    var headerChild = new DrawerHeader(child: new Text("Header"));
+    var headerChild = new DrawerHeader(
+        child: new Text("Mijn RDW"),
+    );
     var aboutChild = new AboutListTile(
         child: new Text("About"),
         applicationName: "Application Name",
@@ -52,8 +60,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
     var myNavChildren = [
       headerChild,
-      getNavItem(Icons.home, "Home", "/"),
-      getNavItem(Icons.settings, "Settings", SettingsScreen.routeName),
+      getNavItem(Icons.star, "Mijn Voertuigen", "/"),
+      getNavItem(Icons.remove_red_eye, "Onlangs bekeken", "/"),
+      getNavItem(Icons.show_chart, "Afgegeven kentekens", "/"),
+      getNavItem(Icons.add_alert, "Rijbewijs alert", "/"),
+      getNavItem(Icons.settings, "Instellingen", SettingsScreen.routeName),
+      getNavItem(Icons.star, "App beoordelen", "/"),
       aboutChild
     ];
 
@@ -105,10 +117,8 @@ class _MyHomePageState extends State<MyHomePage> {
         title: new Text(widget.title),
       ),
       drawer: getNavDrawer(context),
-      body: new Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: new Column(
+      body:
+        new ListView(
           // Column is also layout widget. It takes a list of children and
           // arranges them vertically. By default, it sizes itself to fit its
           // children horizontally, and tries to be as tall as its parent.
@@ -122,17 +132,47 @@ class _MyHomePageState extends State<MyHomePage> {
           // center the children vertically; the main axis here is the vertical
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            new Text(
-              'You have pushed the button this many times:',
-            ),
-            new Text("hi"
-            ),
-            //new FloatingActionButton(onPressed: null)
-          ],
+            new GestureDetector(
+              child: new Card(
+                child:new Container(
+                  child: new Row(
+                    children: <Widget>[
+                      new Icon(Icons.directions_car,size: 50.0,),
+                      new Padding(padding: const EdgeInsets.all(10.0),
+                      child: new Column(
+                        children: <Widget>[
+                          new Text('CITROEN SAXO',),
+                          new Text('19-LG-RG')
+                        ],
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                      ),),
+
+                    ],
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                  ),
+                  margin: const EdgeInsets.all(10.0),
+                  height: 80.0,
+                ),
+              ),
+              onTap: () {
+                setState(() {
+                  Navigator.of(context).pushNamed(DetailsScreen.routeName);});
+              },
+            )],
         ),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+        floatingActionButton: new FloatingActionButton(
+           onPressed: _addKenteken(),
+            tooltip: 'Increment',
+            child: new Icon(Icons.add),
+       )// This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+
+  _addKenteken(){
+
+  }
+
 }
